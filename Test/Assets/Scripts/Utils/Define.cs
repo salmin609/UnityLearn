@@ -14,4 +14,10 @@ public class Define
         QuarterView,
         PersonalView
     }
+
+    public enum UiEvent
+    {
+        Click,
+        Drag,
+    }
 }
