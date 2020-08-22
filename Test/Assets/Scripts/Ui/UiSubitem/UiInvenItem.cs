@@ -24,7 +24,7 @@ public class UiInvenItem : UiBase
         Bind<GameObject>(typeof(GameObjects));
         Get<GameObject>((int) GameObjects.ItemTextName).GetComponent<Text>().text = $"{name}";
 
-        Get<GameObject>((int)GameObjects.ItemIcon).AddUiEvent(ptr =>
+        Get<GameObject>((int)GameObjects.ItemIcon).BindEvent(ptr =>
         {
             Debug.Log($"ItemNum :  { name } ");
             //Debug.Log("Why ssibal");

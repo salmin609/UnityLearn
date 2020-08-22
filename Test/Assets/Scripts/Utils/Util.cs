@@ -7,12 +7,10 @@ public class Util
     public static T GetOrAddComponent<T>(GameObject obj) where T : UnityEngine.Component
     {
         T component = obj.GetComponent<T>();
-
         if (component == null)
         {
             component = obj.AddComponent<T>();
         }
-
         return component;
     }
     public static GameObject FindChild(GameObject obj, string name = null, bool recursive = false)

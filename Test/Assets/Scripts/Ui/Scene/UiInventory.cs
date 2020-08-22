@@ -29,12 +29,10 @@ public class UiInventory : UiScene
 
         for (int i = 0; i < 8; ++i)
         {
-            GameObject item = Managers.Resource.Instantiate("Ui/Scene/UiInvenItem");
-            item.transform.SetParent(gridPanel.transform);
+            GameObject item = Managers.Ui.MakeSubItem<UiInvenItem>(parent : gridPanel.transform).gameObject;
 
-            UiInvenItem itemInfo = Util.GetOrAddComponent<UiInvenItem>(item);
+            UiInvenItem itemInfo = item.GetOrAddComponent<UiInvenItem>();
             itemInfo.SetInfo($"mtf {i}");
         }
     }
-
 }

@@ -56,7 +56,11 @@ public abstract class UiBase : MonoBehaviour
         return Get<Image>(index);
     }
 
-    public static void AddUiEvent(GameObject obj, Action<PointerEventData> action, Define.UiEvent type = Define.UiEvent.Click)
+    protected GameObject GetObject(int index)
+    {
+        return Get<GameObject>(index);
+    }
+    public static void BindEvent(GameObject obj, Action<PointerEventData> action, Define.UiEvent type = Define.UiEvent.Click)
     {
         UiEventHandler eventHandler = Util.GetOrAddComponent<UiEventHandler>(obj);
 
