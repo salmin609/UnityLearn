@@ -7,7 +7,7 @@ public class Managers : MonoBehaviour
 {
     static Managers manager;
 
-    static Managers Manager
+    public static Managers Manager
     {
         get
         {
@@ -36,7 +36,6 @@ public class Managers : MonoBehaviour
 
     private UiManager uiManager = new UiManager();
 
-
     public static UiManager Ui
     {
         get
@@ -44,7 +43,18 @@ public class Managers : MonoBehaviour
             return manager.uiManager;
         }
     }
-    void Start()
+
+    private SceneManagerEx sceneManager = new SceneManagerEx();
+
+    public static SceneManagerEx Scene
+    {
+        get
+        {
+            return manager.sceneManager;
+        }
+    }
+
+    void Awake()
     {
         Init();
     }

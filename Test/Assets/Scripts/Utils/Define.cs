@@ -20,4 +20,12 @@ public class Define
         Click,
         Drag,
     }
+
+    public enum Scenes
+    {
+        Unknown,
+        Login,
+        Lobby,
+        Game,
+    }
 }
