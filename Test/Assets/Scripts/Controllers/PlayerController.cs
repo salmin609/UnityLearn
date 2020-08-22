@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         Managers.Input.KeyAction -= KeyboardMove;
         Managers.Input.KeyAction += KeyboardMove;
 
-        //Managers.Resource.Instantiate("UiButton");
+        Managers.Ui.ShowSceneUi<UiInventory>();
     }
 
     // Update is called once per frame

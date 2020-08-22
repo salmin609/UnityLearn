@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-public class UiButton : UiBase
+public class UiButton : UIPopup
 {
     [SerializeField] private Text text;
 
@@ -36,6 +36,13 @@ public class UiButton : UiBase
 
     private void Start()
     {
+        Init();
+    }
+
+    public override void Init()
+    {
+        base.Init();
+
         Bind<Button>(typeof(Buttons));
         Bind<Text>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
@@ -43,10 +50,10 @@ public class UiButton : UiBase
 
         GetButton((int)Buttons.PointButton).gameObject.AddUiEvent(OnButtonClick);
 
-        GameObject obj = GetImage((int) Images.ItemIcon).gameObject;
-        AddUiEvent(obj, (PointerEventData data) => { obj.transform.position = data.position;}, Define.UiEvent.Drag);
-
+        GameObject obj = GetImage((int)Images.ItemIcon).gameObject;
+        AddUiEvent(obj, (PointerEventData data) => { obj.transform.position = data.position; }, Define.UiEvent.Drag);
     }
+
     public void OnButtonClick(PointerEventData data)
     {
         score++;

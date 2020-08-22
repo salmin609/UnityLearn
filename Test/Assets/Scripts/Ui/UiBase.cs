@@ -6,9 +6,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-public class UiBase : MonoBehaviour
+public abstract class UiBase : MonoBehaviour
 {
     Dictionary<Type, UnityEngine.Object[]> objects = new Dictionary<Type, Object[]>();
+
+    public abstract void Init();
     protected void Bind<T>(Type type) where T : Object
     {
         string[] names = Enum.GetNames(type);

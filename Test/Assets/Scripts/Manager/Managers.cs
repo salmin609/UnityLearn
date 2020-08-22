@@ -24,13 +24,24 @@ public class Managers : MonoBehaviour
             return manager.inputManager;
         }
     }
-    ResourceManager ResourceManager = new ResourceManager();
+    ResourceManager resourceManager = new ResourceManager();
 
     public static ResourceManager Resource
     {
         get
         {
-            return manager.ResourceManager;
+            return manager.resourceManager;
+        }
+    }
+
+    private UiManager uiManager = new UiManager();
+
+
+    public static UiManager Ui
+    {
+        get
+        {
+            return manager.uiManager;
         }
     }
     void Start()
