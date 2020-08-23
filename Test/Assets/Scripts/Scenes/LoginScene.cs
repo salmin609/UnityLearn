@@ -10,6 +10,11 @@ public class LoginScene : BaseScene
         base.Init();
 
         sceneType = Define.Scenes.Login;
+
+        //for (int i = 0; i < 2; ++i)
+        //{
+        //    Managers.Resource.Instantiate("character");
+        //}
     }
 
     private void Update()

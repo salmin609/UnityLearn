@@ -15,6 +15,11 @@ public class GameScene : BaseScene
         sceneType = Define.Scenes.Game;
 
         Managers.Ui.ShowSceneUi<UiInventory>();
+
+        //for (int i = 0; i < 5; ++i)
+        //{
+        //    Managers.Resource.Instantiate("character");
+        //}
     }
 
     public override void Clear()

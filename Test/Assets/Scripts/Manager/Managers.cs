@@ -64,6 +64,16 @@ public class Managers : MonoBehaviour
         }
     }
 
+    private PoolManager poolManager = new PoolManager();
+
+    public static PoolManager Pool
+    {
+        get
+        {
+            return manager.poolManager;
+        }
+    }
+
     void Awake()
     {
         Init();
@@ -91,10 +101,9 @@ public class Managers : MonoBehaviour
 
             DontDestroyOnLoad(go);
             manager = go.GetComponent<Managers>();
-
+            manager.poolManager.Init();
             manager.soundManager.Init();
         }
-
     }
 
     public static void Clear()
@@ -103,5 +112,6 @@ public class Managers : MonoBehaviour
         Input.Clear();
         Ui.Clear();
         Scene.Clear();
+        Pool.Clear();
     }
 }
