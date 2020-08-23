@@ -1,42 +1,35 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager
 {
     AudioSource[] audioSources = new AudioSource[(int)Define.Sound.MaxCount];
-
     Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
 
     public void Init()
     {
-        GameObject obj = GameObject.Find("@Sound");
-
-        if (obj == null)
-        {
-            obj = new GameObject
+        Util.FindGamObjectOrMake("@Sound", ob =>
             {
-                name = "@Sound"
-            };
-            Object.DontDestroyOnLoad(obj);
+                string[] soundNames = System.Enum.GetNames(typeof(Define.Sound));
 
-            string[] soundNames = System.Enum.GetNames(typeof(Define.Sound));
-
-            for (int i = 0; i < soundNames.Length - 1; ++i)
-            {
-                GameObject go = new GameObject
+                for (int i = 0; i < soundNames.Length - 1; ++i)
                 {
-                    name = soundNames[i]
-                };
-                audioSources[i] = go.AddComponent<AudioSource>();
-                go.transform.parent = obj.transform;
-            }
+                    GameObject go = new GameObject
+                    {
+                        name = soundNames[i]
+                    };
+                    audioSources[i] = go.AddComponent<AudioSource>();
+                    go.transform.parent = ob.transform;
+                }
 
-            audioSources[(int) Define.Sound.Bgm].loop = true;
-        }
+                audioSources[(int)Define.Sound.Bgm].loop = true;
+            }
+            , false);
     }
 
-    public void Play(string path, Define.Sound type = Define.Sound.Effect,  float pitch = 1.0f)
+    public void Play(string path, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
     {
         AudioClip clip = GetOrAddAudioClip(path, type);
         Play(clip, type, pitch);
@@ -100,7 +93,7 @@ public class SoundManager
 
     public void Clear()
     {
-        foreach(AudioSource aud in audioSources)
+        foreach (AudioSource aud in audioSources)
         {
             aud.Stop();
             aud.clip = null;
@@ -108,3 +101,44 @@ public class SoundManager
         audioClips.Clear();
     }
 }
+
+
+//both doing same way
+/*
+GameObject obj = Util.FindGamObjectOrMake("@Sound", out bool isNullatFirst, false);
+
+if (isNullatFirst == true)
+{
+    string[] soundNames = System.Enum.GetNames(typeof(Define.Sound));
+
+    for (int i = 0; i < soundNames.Length - 1; ++i)
+    {
+        GameObject go = new GameObject
+        {
+            name = soundNames[i]
+        };
+        audioSources[i] = go.AddComponent<AudioSource>();
+        go.transform.parent = obj.transform;
+    }
+
+    audioSources[(int)Define.Sound.Bgm].loop = true;
+}
+----------------------------------------------------------------------------
+Util.FindGamObjectOrMake("@Sound", ob =>
+{
+string[] soundNames = System.Enum.GetNames(typeof(Define.Sound));
+
+    for (int i = 0; i < soundNames.Length - 1; ++i)
+{
+    GameObject go = new GameObject
+    {
+        name = soundNames[i]
+    };
+    audioSources[i] = go.AddComponent<AudioSource>();
+    go.transform.parent = ob.transform;
+}
+
+audioSources[(int)Define.Sound.Bgm].loop = true;
+}
+, false);
+*/

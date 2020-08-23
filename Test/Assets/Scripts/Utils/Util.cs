@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class Util
 {
@@ -57,5 +59,65 @@ public class Util
 
         return null;
     }
+
+    public static Object FindObjectTypeOrInstantiate(Type objType, string path, string name)
+    {
+        Object obj = Object.FindObjectOfType(objType);
+
+        if (obj == null)
+        {
+            Managers.Resource.Instantiate(path).name = name;
+        }
+
+        return obj;
+    }
+
+    public static GameObject FindGamObjectOrMake(string name, out bool isNullatFirst, bool isDestroyable = true)
+    {
+        GameObject obj = GameObject.Find(name);
+
+        if (obj == null)
+        {
+            obj = new GameObject
+            {
+                name = name
+            };
+
+            if (isDestroyable == false)
+            {
+                Object.DontDestroyOnLoad(obj);
+            }
+
+            isNullatFirst = true;
+        }
+        else
+        {
+            isNullatFirst = false;
+        }
+
+        return obj;
+    }
+
+    public static GameObject FindGamObjectOrMake(string objName, Action<GameObject> act, bool isDestroyable = true)
+    {
+        GameObject obj = GameObject.Find(objName);
+
+        if (obj == null)
+        {
+            obj = new GameObject
+            {
+                name = objName
+            };
+
+            if (isDestroyable == false)
+            {
+                Object.DontDestroyOnLoad(obj);
+            }
+            act.Invoke(obj);
+        }
+
+        return obj;
+    }
+
 
 }
