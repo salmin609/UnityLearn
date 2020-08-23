@@ -463,6 +463,7 @@ GameObject:
   - component: {fileID: 1947451069}
   - component: {fileID: 1947451073}
   - component: {fileID: 1947451074}
+  - component: {fileID: 1947451076}
   m_Layer: 8
   m_Name: zz
   m_TagString: Untagged
@@ -478,7 +479,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947451068}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -552,7 +553,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947451068}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: db5261dbdebc79e468e0333c4ef5d139, type: 2}
   m_CullingMode: 0
@@ -573,6 +574,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29f132d768a22044a8f8b7b2c9e99f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1947451076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947451068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4583aa666e7b94a47aebbe129a963dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2061306333 stripped

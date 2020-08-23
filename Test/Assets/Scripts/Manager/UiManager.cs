@@ -86,7 +86,7 @@ public class UiManager
 
         if (parent != null)
         {
-            obj.transform.SetParent(parent);
+            obj.transform.SetParent(parent); 
         }
 
         return comp;
@@ -125,5 +125,11 @@ public class UiManager
         {
             ClosePopupUi();
         }
+    }
+
+    public void Clear()
+    {
+        CloseAllPopupUi();
+        sceneUi = null;
     }
 }

@@ -54,6 +54,16 @@ public class Managers : MonoBehaviour
         }
     }
 
+    private SoundManager soundManager = new SoundManager();
+
+    public static SoundManager Sound
+    {
+        get
+        {
+            return manager.soundManager;
+        }
+    }
+
     void Awake()
     {
         Init();
@@ -81,7 +91,17 @@ public class Managers : MonoBehaviour
 
             DontDestroyOnLoad(go);
             manager = go.GetComponent<Managers>();
+
+            manager.soundManager.Init();
         }
 
+    }
+
+    public static void Clear()
+    {
+        Sound.Clear();
+        Input.Clear();
+        Ui.Clear();
+        Scene.Clear();
     }
 }

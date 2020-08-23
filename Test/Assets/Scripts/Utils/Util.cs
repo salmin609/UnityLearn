@@ -30,7 +30,8 @@ public class Util
 
         if (!recursive)
         {
-            for (int i = 0; i < obj.transform.childCount; ++i)
+            int childCount = obj.transform.childCount;
+            for (int i = 0; i < childCount; ++i)
             {
                 Transform childTransform = obj.transform.GetChild(i);
 
@@ -50,7 +51,7 @@ public class Util
             foreach (T component in obj.GetComponentsInChildren<T>())
             {
                 if (string.IsNullOrEmpty(component.name) || component.name == name)
-                return component;
+                    return component;
             }
         }
 
