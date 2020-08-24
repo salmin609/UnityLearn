@@ -11,10 +11,12 @@ public class LoginScene : BaseScene
 
         sceneType = Define.Scenes.Login;
 
+        #region HowToPool
         //for (int i = 0; i < 2; ++i)
         //{
         //    Managers.Resource.Instantiate("character");
         //}
+        #endregion
     }
 
     private void Update()
@@ -27,6 +29,6 @@ public class LoginScene : BaseScene
 
     public override void Clear()
     {
-        Debug.Log("hLEELLO");
+        Debug.Log("Login Scene Clear");
     }
 }

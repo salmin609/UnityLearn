@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
-    void Start()
-    {
-        Init();
-    }
+    private Coroutine co;
+
     protected override void Init()
     {
         base.Init();
@@ -16,14 +14,43 @@ public class GameScene : BaseScene
 
         Managers.Ui.ShowSceneUi<UiInventory>();
 
+        #region HowToPool
         //for (int i = 0; i < 5; ++i)
         //{
         //    Managers.Resource.Instantiate("character");
         //}
+        #endregion
+
+        #region HowToUseCoroutine
+        co = StartCoroutine("CoCheckAfterSeconds", 4.0f);
+        StartCoroutine("CoStopAfterSeconds", 2.0f);
+        #endregion
+
     }
 
     public override void Clear()
     {
 
     }
+
+    #region CoroutineFunctions
+    IEnumerator CoCheckAfterSeconds(float second)
+    {
+        Debug.Log($"CoRoutin second : {second}");
+        yield return new WaitForSeconds(second);
+        Debug.Log("CoRoutin end");
+        co = null;
+    }
+    IEnumerator CoStopAfterSeconds(float second)
+    {
+        Debug.Log($"StopCoRoutin second : {second}");
+        yield return new WaitForSeconds(second);
+        Debug.Log("StopCoRoutin end");
+        if (co != null)
+        {
+            StopCoroutine(co);
+            co = null;
+        }
+    }
+    #endregion
 }
