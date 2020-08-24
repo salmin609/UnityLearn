@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public class Util
+public class Util : MonoBehaviour
 {
     public static T GetOrAddComponent<T>(GameObject obj) where T : UnityEngine.Component
     {
@@ -97,7 +97,6 @@ public class Util
 
         return obj;
     }
-
     public static GameObject FindGamObjectOrMake(string objName, Action<GameObject> act, bool isDestroyable = true)
     {
         GameObject obj = GameObject.Find(objName);
@@ -118,6 +117,4 @@ public class Util
 
         return obj;
     }
-
-
 }

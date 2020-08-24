@@ -14,6 +14,9 @@ public class GameScene : BaseScene
 
         Managers.Ui.ShowSceneUi<UiInventory>();
 
+        
+        Dictionary<int, Stat> stat = Managers.Data.statDictionary;
+
         #region HowToPool
         //for (int i = 0; i < 5; ++i)
         //{
@@ -25,7 +28,6 @@ public class GameScene : BaseScene
         co = StartCoroutine("CoCheckAfterSeconds", 4.0f);
         StartCoroutine("CoStopAfterSeconds", 2.0f);
         #endregion
-
     }
 
     public override void Clear()

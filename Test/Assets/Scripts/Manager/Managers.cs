@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using UnityEditor;
 using UnityEngine;
 
 public class Managers : MonoBehaviour
@@ -74,10 +75,20 @@ public class Managers : MonoBehaviour
         }
     }
 
-    void Awake()
+    private DataManager dataManager = new DataManager();
+
+    public static DataManager Data
     {
-        Init();
+        get
+        {
+            return manager.dataManager;
+        }
     }
+
+    //void Awake()
+    //{
+    //    Init();
+    //}
      
     void Update()
     {
@@ -101,6 +112,7 @@ public class Managers : MonoBehaviour
 
             DontDestroyOnLoad(go);
             manager = go.GetComponent<Managers>();
+            manager.dataManager.Init();
             manager.poolManager.Init();
             manager.soundManager.Init();
         }
