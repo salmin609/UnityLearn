@@ -34,7 +34,7 @@ public class ResourceManager
         GameObject original = Load<GameObject>($"Prefab/{path}");
         if (original == null)
         {
-            Debug.Log("What the fuck r u doing");
+            Debug.Log("Path is wrong");
             return null;
         }
 

@@ -117,4 +117,27 @@ public class Util : MonoBehaviour
 
         return obj;
     }
+
+    public static Vector2 VectorInterpolationOneToMinusOne(Vector2 val)
+    {
+        Vector2 returnVal = Vector2.zero;
+        if (val.x > 0.0f)
+        {
+            returnVal.x = 1.0f;
+        }
+        else if (val.x < 0.0f)
+        {
+            returnVal.x = -1.0f;
+        }
+
+        if (val.y > 0.0f)
+        {
+            returnVal.y = 1.0f;
+        }
+        else if (val.y < 0.0f)
+        {
+            returnVal.y = -1.0f;
+        }
+        return returnVal;
+    }
 }

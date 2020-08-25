@@ -23,7 +23,7 @@ public class LoginScene : BaseScene
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Managers.Scene.LoadScene(Define.Scenes.Game);
+            Managers.Scene.LoadScene(Define.Scenes.NewGame);
         }
     }
 

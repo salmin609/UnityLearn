@@ -14,9 +14,14 @@ public class InputManager
     // Update is called once per frame
     public void OnUpdate()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+        EventSystem currentSystem = EventSystem.current;
+
+        if (currentSystem != null)
         {
-            return;
+            if (currentSystem.IsPointerOverGameObject())
+            {
+                return;
+            }
         }
 
         if (Input.anyKey && KeyAction != null)

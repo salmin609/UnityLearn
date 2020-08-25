@@ -27,6 +27,7 @@ public class Define
         Login,
         Lobby,
         Game,
+        NewGame,
     }
 
     public enum Sound
