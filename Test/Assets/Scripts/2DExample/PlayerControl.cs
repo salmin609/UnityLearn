@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
     private bool dashStarted = false;
 
     public GameObject dashEffect;
+    private ParticleSystem particle;
 
     void Start()
     {
@@ -61,7 +62,11 @@ public class PlayerControl : MonoBehaviour
             rigidBody.velocity = Util.VectorInterpolationOneToMinusOne(direction) * dashSpeed;
             startDashTime = dashTime;
             dashStarted = true;
-            Instantiate(dashEffect, transform.position, Quaternion.identity);
+            //Instantiate(dashEffect, transform.position, Quaternion.identity);
+
+            GameObject obj = Instantiate(dashEffect, transform.position, Quaternion.identity);
+
+            Destroy(obj, 1.0f);
 
         }
 
