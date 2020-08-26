@@ -5,22 +5,22 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     private GameObject currObject;
+    private float spawnTimer = 3.0f;
+
     void Start()
     {
-        Managers.Input.MouseAction -= ClickToSpawn;
-        Managers.Input.MouseAction += ClickToSpawn;
     }
 
     void Update()
     {
-        
-    }
-
-    void ClickToSpawn(Define.MouseEvent mouseEvent)
-    {
-        if (Input.GetMouseButtonDown(0))
+        if (spawnTimer > 0.0f)
         {
-            Managers.Resource.Instantiate("2D/basic");
+            spawnTimer -= Time.deltaTime;
+        }
+        else
+        {
+            Managers.Resource.Instantiate("2D/Basic");
+            spawnTimer = 3.0f;
         }
     }
 }
