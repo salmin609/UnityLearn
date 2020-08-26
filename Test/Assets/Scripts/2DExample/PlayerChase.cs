@@ -12,21 +12,27 @@ public class PlayerChase : MonoBehaviour
     void Start()
     {
         rigitBody = GetComponent<Rigidbody2D>();
-        playerTransform = GameObject.Find("SimplePlayer").transform;
+        //playerTransform = GameObject.Find("SimplePlayer").transform;
     }
 
     void Update()
     {
-        Vector3 dir = playerTransform.position - transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        rigitBody.rotation = angle;
-        dir.Normalize();
-        movement = dir;
+        if (playerTransform != null)
+        {
+            Vector3 dir = playerTransform.position - transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            rigitBody.rotation = angle;
+            dir.Normalize();
+            movement = dir;
+        }
     }
 
     private void FixedUpdate()
     {
-        MoveCharacter(movement);
+        if (playerTransform != null)
+        {
+            MoveCharacter(movement);
+        }
     }
 
     void MoveCharacter(Vector2 direction)

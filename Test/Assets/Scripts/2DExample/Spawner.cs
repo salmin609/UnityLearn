@@ -6,21 +6,36 @@ public class Spawner : MonoBehaviour
 {
     private GameObject currObject;
     private float spawnTimer = 3.0f;
+    public GameObject basicEnemy;
+    public bool stopSpawning = false;
+    public GameObject player;
+
 
     void Start()
     {
+        InvokeRepeating("SpawnEnemy", spawnTimer, spawnTimer);
     }
 
     void Update()
     {
-        if (spawnTimer > 0.0f)
+        if (player == null)
         {
-            spawnTimer -= Time.deltaTime;
+            stopSpawning = true;
         }
-        else
+    }
+
+    public void SpawnEnemy()
+    {
+        GameObject enemy = Instantiate(basicEnemy, transform.position, Quaternion.identity);
+
+        if (player != null)
         {
-            Managers.Resource.Instantiate("2D/Basic");
-            spawnTimer = 3.0f;
+            enemy.GetComponent<PlayerChase>().playerTransform = player.transform;
+        }
+
+        if (stopSpawning)
+        {
+            CancelInvoke("SpawnEnemy");
         }
     }
 }

@@ -17,7 +17,7 @@ public class PlayerControl : MonoBehaviour
     private Vector2 currPos;
     private bool dashStarted = false;
 
-    public GameObject dashEffect;
+    public GameObject killedEffect;
     public GameObject enemyKillEffect;
 
     private ParticleSystem particle;
@@ -64,8 +64,7 @@ public class PlayerControl : MonoBehaviour
             rigidBody.velocity = Util.VectorInterpolationOneToMinusOne(direction) * dashSpeed;
             startDashTime = dashTime;
             dashStarted = true;
-            GameObject obj = Instantiate(dashEffect, transform.position, Quaternion.identity);
-            Destroy(obj, 1.0f);
+
 
             Camera mainCam = Camera.main;
             Animator mainCamSahke = mainCam.GetComponent<Animator>();
@@ -96,10 +95,15 @@ public class PlayerControl : MonoBehaviour
                 GameObject killParticle = Instantiate(enemyKillEffect, collision.transform.position, Quaternion.identity);
                 Managers.Resource.Destroy(collision.gameObject);
                 Object.Destroy(killParticle, 1.0f);
+                ScoreText.score++;
+                Managers.Sound.Play("FreeSound/Bloody punch", Define.Sound.Effect);
             }
             else
             {
-                Debug.Log("Dead");
+                Managers.Resource.Destroy(gameObject);
+                GameObject obj = Instantiate(killedEffect, transform.position, Quaternion.identity);
+                Destroy(obj, 1.0f);
+
             }
         }
     }

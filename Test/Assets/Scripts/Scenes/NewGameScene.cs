@@ -10,6 +10,7 @@ public class NewGameScene : BaseScene
     {
         base.Init();
         sceneType = Define.Scenes.NewGame;
+        Managers.Sound.Play("FreeSound/Cavern Atmosphere - Loop", Define.Sound.Bgm);
     }
 
     public override void Clear()
